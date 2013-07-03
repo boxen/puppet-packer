@@ -16,12 +16,13 @@ class packer(
         "rm -rf /tmp/packer* /tmp/${extracted_dirname}",
         # download the zip to tmp
         "curl ${packer::params::download_uri} > /tmp/packer-v${version}.zip",
-        # extract the zip to root
-        "unzip -o /tmp/packer-v${version}.zip -d /tmp",
+        # extract the zip to tmp spot
+        "mkdir /tmp/packer",
+        "unzip -o /tmp/packer-v${version}.zip -d /tmp/packer",
         # blow away an existing version if there is one
         "rm -rf ${root}",
         # move the directory to the root
-        "mv /tmp/${extracted_dirname} ${root}",
+        "mv /tmp/packer ${root}",
         # chown it
         "chown -R ${user} ${root}"
       ], ' && ')
