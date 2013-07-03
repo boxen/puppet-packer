@@ -8,14 +8,14 @@ class packer(
   case $ensure {
     present: {
       # the dir inside the zipball uses the major version number segment
-      $major_version = split($version, '.')
+      $major_version = split($version, '[.]')
       $extracted_dirname = $major_version[0]
 
       $install_command = join([
         # blow away any previous attempts
         "rm -rf /tmp/packer* /tmp/${extracted_dirname}",
         # download the zip to tmp
-        "curl ${packer::params::download_url} > /tmp/packer-v${version}.zip",
+        "curl ${packer::params::download_uri} > /tmp/packer-v${version}.zip",
         # extract the zip to root
         "unzip -o /tmp/packer-v${version}.zip -d /tmp",
         # blow away an existing version if there is one

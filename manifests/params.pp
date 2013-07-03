@@ -16,7 +16,7 @@ class packer::params {
     'Darwin': {
       include boxen::config
 
-      $user = boxen::config::user
+      $user = $::boxen_user
 
       $root = "${boxen::config::home}/packer"
     }
