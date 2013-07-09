@@ -16,6 +16,9 @@ class packer(
 
   case $ensure {
     present: {
+      # get the download URI
+      $download_uri = "http://dl.bintray.com/mitchellh/packer/${version}_${packer::params::_real_platform}.zip?direct"
+
       # the dir inside the zipball uses the major version number segment
       $major_version = split($version, '[.]')
       $extracted_dirname = $major_version[0]
@@ -24,7 +27,7 @@ class packer(
         # blow away any previous attempts
         "rm -rf /tmp/packer* /tmp/${extracted_dirname}",
         # download the zip to tmp
-        "curl ${packer::params::download_uri} > /tmp/packer-v${version}.zip",
+        "curl ${download_uri} > /tmp/packer-v${version}.zip",
         # extract the zip to tmp spot
         'mkdir /tmp/packer',
         "unzip -o /tmp/packer-v${version}.zip -d /tmp/packer",

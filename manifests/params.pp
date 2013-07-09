@@ -12,8 +12,6 @@ class packer::params {
 
   $_real_platform = "${_real_kernel}_${_real_arch}"
 
-  $download_uri = "http://dl.bintray.com/mitchellh/packer/${version}_${_real_platform}.zip?direct"
-
   case $::operatingsystem {
     'Darwin': {
       include boxen::config
