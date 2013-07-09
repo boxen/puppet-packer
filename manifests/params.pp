@@ -1,3 +1,5 @@
+# Internal: Default configuration for packer
+
 class packer::params {
   $version = '0.1.4'
 

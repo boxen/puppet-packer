@@ -1,3 +1,12 @@
+# Public: Installs a version of Packer
+#
+# Params:
+#
+#  ensure  -- must be present or absent, default present
+#  root    -- the path to install packer to, see packer::params for default
+#  user    -- the user to install packer as, see packer::params for default
+#  version -- the version of packer to ensure, see packer::params for default
+
 class packer(
   $ensure  = present,
   $root    = $packer::params::root,
@@ -17,7 +26,7 @@ class packer(
         # download the zip to tmp
         "curl ${packer::params::download_uri} > /tmp/packer-v${version}.zip",
         # extract the zip to tmp spot
-        "mkdir /tmp/packer",
+        'mkdir /tmp/packer',
         "unzip -o /tmp/packer-v${version}.zip -d /tmp/packer",
         # blow away an existing version if there is one
         "rm -rf ${root}",
@@ -38,7 +47,7 @@ class packer(
         include boxen::config
 
         file { "${boxen::config::envdir}/packer.sh":
-          content => template("packer/env.sh.erb"),
+          content => template('packer/env.sh.erb'),
           owner   => $user
         }
       }
@@ -53,7 +62,7 @@ class packer(
     }
 
     default: {
-      fail("Ensure must be present or absent")
+      fail('Ensure must be present or absent')
     }
   }
 }
