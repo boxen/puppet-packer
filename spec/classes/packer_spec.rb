@@ -5,7 +5,7 @@ describe "packer" do
   let(:default_params) do
     {
       :ensure  => "present",
-      :version => "0.9.9"
+      :version => "0.2.1"
     }
   end
 
@@ -15,10 +15,10 @@ describe "packer" do
       [
         "rm -rf /tmp/packer* /tmp/0",
         # download the zip to tmp
-        "curl http://dl.bintray.com/mitchellh/packer/0.9.9_darwin_amd64.zip?direct > /tmp/packer-v0.9.9.zip",
+        "curl http://dl.bintray.com/mitchellh/packer/0.2.1_darwin_amd64.zip?direct > /tmp/packer-v0.2.1.zip",
         # extract the zip to tmp spot
         "mkdir /tmp/packer",
-        "unzip -o /tmp/packer-v0.9.9.zip -d /tmp/packer",
+        "unzip -o /tmp/packer-v0.2.1.zip -d /tmp/packer",
         # blow away an existing version if there is one
         "rm -rf /test/boxen/packer",
         # move the directory to the root
@@ -29,9 +29,9 @@ describe "packer" do
     }
 
     it do
-      should contain_exec("install packer v0.9.9").with({
+      should contain_exec("install packer v0.2.1").with({
         :command => command,
-        :unless  => "test -x /test/boxen/packer/packer && /test/boxen/packer/packer -v | grep '\\bv0.9.9\\b'",
+        :unless  => "test -x /test/boxen/packer/packer && /test/boxen/packer/packer -v | grep '\\bv0.2.1\\b'",
         :user    => "testuser",
 
       })
