@@ -49,9 +49,13 @@ class packer(
       if $::operatingsystem == 'Darwin' {
         include boxen::config
 
+        boxen::env_script { 'packer':
+          content  => template('packer/env.sh.erb'),
+          priority => 'lower',
+        }
+
         file { "${boxen::config::envdir}/packer.sh":
-          content => template('packer/env.sh.erb'),
-          owner   => $user
+          ensure => absent,
         }
       }
     }
