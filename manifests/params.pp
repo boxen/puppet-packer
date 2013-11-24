@@ -1,7 +1,7 @@
 # Internal: Default configuration for packer
 
 class packer::params {
-  $version = '0.3.10'
+  $version = '0.4.0'
 
   $_real_kernel = downcase($::kernel)
   $_real_arch   = $::architecture ? {
