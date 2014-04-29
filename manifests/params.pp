@@ -5,8 +5,10 @@ class packer::params {
 
   $_real_kernel = downcase($::kernel)
   $_real_arch   = $::architecture ? {
+    'amd64'  => 'amd64',
     'x86_64' => 'amd64',
     'x86'    => '386',
+    'i386'   => '386',
     default  => 'arm'
   }
 
