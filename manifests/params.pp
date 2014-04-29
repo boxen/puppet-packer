@@ -8,6 +8,7 @@ class packer::params {
     'amd64'  => 'amd64',
     'x86_64' => 'amd64',
     'x86'    => '386',
+    'i386'   => '386',
     default  => 'arm'
   }
 
