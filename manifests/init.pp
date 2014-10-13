@@ -43,6 +43,7 @@ class packer(
         "install packer v${version}":
           command => $install_command,
           unless  => "test -x ${root}/packer && ${root}/packer -v | grep '\\bv${version}\\b'",
+          path    => '/usr/local/bin:/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/sbin',
           user    => $user,
       }
 
