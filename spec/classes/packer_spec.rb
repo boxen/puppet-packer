@@ -15,7 +15,7 @@ describe "packer" do
       [
         "rm -rf /tmp/packer* /tmp/0",
         # download the zip to tmp
-        "curl http://dl.bintray.com/mitchellh/packer/0.9.9_darwin_amd64.zip?direct > /tmp/packer-v0.9.9.zip",
+        "curl http://dl.bintray.com/mitchellh/packer/packer_0.9.9_darwin_amd64.zip?direct > /tmp/packer-v0.9.9.zip",
         # extract the zip to tmp spot
         "mkdir /tmp/packer",
         "unzip -o /tmp/packer-v0.9.9.zip -d /tmp/packer",
