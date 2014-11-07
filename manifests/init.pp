@@ -17,7 +17,10 @@ class packer(
   case $ensure {
     present: {
       # get the download URI
-      $download_uri = "http://dl.bintray.com/mitchellh/packer/${version}_${packer::params::_real_platform}.zip?direct"
+      $download_uri = $version ? {
+        /(0\.[7-9]\.[0-9])/ => "https://dl.bintray.com/mitchellh/packer/packer_${version}_${packer::params::_real_platform}.zip?direct",
+        default   => "http://dl.bintray.com/mitchellh/packer/${version}_${packer::params::_real_platform}.zip?direct",
+      }
 
       # the dir inside the zipball uses the major version number segment
       $major_version = split($version, '[.]')
