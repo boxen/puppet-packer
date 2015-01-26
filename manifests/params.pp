@@ -12,6 +12,11 @@ class packer::params {
     default  => 'arm'
   }
 
+  $_archive_prefix = $version ? {
+    /0.[0-7].[0-1]/ => "",
+    default         => "packer_",
+  }
+
   $_real_platform = "${_real_kernel}_${_real_arch}"
 
   case $::operatingsystem {
