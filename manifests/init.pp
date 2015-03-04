@@ -17,7 +17,7 @@ class packer(
   case $ensure {
     present: {
       # get the download URI
-      $download_uri = "http://dl.bintray.com/mitchellh/packer/${version}_${packer::params::_real_platform}.zip?direct"
+      $download_uri = "http://dl.bintray.com/mitchellh/packer/packer_${version}_${packer::params::_real_platform}.zip?direct"
 
       # the dir inside the zipball uses the major version number segment
       $major_version = split($version, '[.]')
@@ -42,7 +42,7 @@ class packer(
       exec {
         "install packer v${version}":
           command => $install_command,
-          unless  => "test -x ${root}/packer && ${root}/packer -v | grep '\\bv${version}\\b'",
+          unless  => "test -x ${root}/packer && ${root}/packer version | grep '\\bv${version}\\b'",
           user    => $user,
       }
 
