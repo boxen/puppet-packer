@@ -42,7 +42,7 @@ class packer(
       exec {
         "install packer v${version}":
           command => $install_command,
-          unless  => "test -x ${root}/packer && ${root}/packer -v | grep '\\bv${version}\\b'",
+          unless  => "test -x ${root}/packer && ${root}/packer version | grep '\\bv${version}\\b'",
           user    => $user,
       }
 

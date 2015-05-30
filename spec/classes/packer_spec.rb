@@ -31,7 +31,7 @@ describe "packer" do
     it do
       should contain_exec("install packer v0.9.9").with({
         :command => command,
-        :unless  => "test -x /test/boxen/packer/packer && /test/boxen/packer/packer -v | grep '\\bv0.9.9\\b'",
+        :unless  => "test -x /test/boxen/packer/packer && /test/boxen/packer/packer version | grep '\\bv0.9.9\\b'",
         :user    => "testuser",
 
       })
