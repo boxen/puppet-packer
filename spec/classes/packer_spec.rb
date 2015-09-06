@@ -15,7 +15,7 @@ describe "packer" do
       [
         "rm -rf /tmp/packer* /tmp/0",
         # download the zip to tmp
-        "curl http://dl.bintray.com/mitchellh/packer/0.9.9_darwin_amd64.zip?direct > /tmp/packer-v0.9.9.zip",
+        "curl http://dl.bintray.com/mitchellh/packer/packer_0.9.9_darwin_amd64.zip?direct > /tmp/packer-v0.9.9.zip",
         # extract the zip to tmp spot
         "mkdir /tmp/packer",
         "unzip -o /tmp/packer-v0.9.9.zip -d /tmp/packer",
@@ -31,7 +31,7 @@ describe "packer" do
     it do
       should contain_exec("install packer v0.9.9").with({
         :command => command,
-        :unless  => "test -x /test/boxen/packer/packer && /test/boxen/packer/packer -v | grep '\\bv0.9.9\\b'",
+        :unless  => "test -x /test/boxen/packer/packer && /test/boxen/packer/packer version | grep '\\bv0.9.9\\b'",
         :user    => "testuser",
 
       })
